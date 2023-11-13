@@ -47,10 +47,22 @@ $("#output").pivotUI(
     cols: [],
     vals: [],
     aggregatorName: "Count",
-    rendererName: "Table Barchart",
-    
+    rendererName: "Table Barchart",   
     
   });
+
+  $(document).ready(function(){
+    $(".pvtRowLabel").each(function(index, objeto) {
+        if(index % 5 == 4){
+            $(objeto).html("<a href='https://blog.hubspot.es/website/como-crear-tabla-bootstrap'>Ejemplo 1</a>")
+            console.log(index)
+            
+        }
+        
+    })
+  });
+  
+
 </script>
 
 </body>
