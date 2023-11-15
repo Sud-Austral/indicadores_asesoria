@@ -1,0 +1,411 @@
+.inicioSesion {
+    text-align: left;
+    color: black;
+}
+
+.logoportal{
+    height:8em;
+    width:15em;
+}
+
+.h11{
+    color:black;
+}
+
+.portadaTextos {
+    font-size: 0.7em;
+    text-align: center;
+}
+
+.card-sombra {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.reducir {
+    transform: scale(0.8);
+}
+
+.select-with-caret {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M0 2l4 4 4-4z' fill='%23808080' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 0.8rem;
+}
+
+.imagenFooter{
+    transform: scale(0.8);
+}
+
+.text-footer{
+    font-size:0.7em !important;
+}
+
+.columnaGrafico{
+    height:50vh;
+}
+@media (max-width: 800px) {
+    /* Estilos aplicados cuando el ancho máximo de la pantalla es 600px o menos */
+    .columnaGrafico {
+        height: 100vh;
+    }
+
+    .chartPrincipal {
+        height: 100vh; /* Altura automática */
+        max-height: 100vh; /* Altura máxima del gráfico en píxeles */
+    }
+}
+.rectangleAnio {
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+rectangleLabel {
+    /*
+    width: 100%;
+    padding: 0;
+    color: green;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    text-align: right;
+    color: green;
+    font-size: small;
+    margin: 0;
+    align-self: flex-end;
+    */
+    bottom: 0px;
+    position: absolute;
+}
+.text-right {
+    text-align: right;
+    color:green;
+    font-size:small;
+}
+.texto-derecha {
+    text-align: center;
+    color: red;
+    font-size: small;
+    padding: 0;
+    margin: 0;
+}
+
+.columnaGrafico {
+    position: relative;
+    margin-bottom:2em;
+}
+
+.linea-horizontal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    border: none;
+    border-top: 2px solid blue;
+    margin: 0;
+}
+
+.tooltip1 {
+    /*
+    position: relative;
+    display: inline-block;
+    */
+    position: relative;
+    cursor: pointer;
+}
+
+    .tooltip1 .tooltiptext {
+        visibility: hidden;        
+        width: 120px;
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        top: 125%; 
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+.tooltip1:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.contenedorImagen {
+    position: relative;
+    height: auto; /* Ajusta la altura del div como desees */
+}
+.contenedorImagen img {
+    padding:10%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%; /* Ajusta el tamaño de la imagen como desees */
+    max-height: 90%;
+    margin-left:10%;
+}
+.tabla-comunal {
+    width: 100%;
+    border-collapse: collapse;
+    height: auto;
+    height:auto;
+}
+.columna-2001 {
+    background-color: #FBE5D6 !important;
+}
+
+.column-2005 {
+    background-color: #FFF2CC !important;
+}
+
+.columna-2009 {
+    background-color: #FFE1E1 !important;
+}
+
+.columna-2013 {
+    background-color: #EBFAFF !important;
+}
+
+.columna-2017 {
+    background-color: #EFE5F7 !important;
+}
+
+.columna-2021 {
+    background-color: #DEEBF7 !important;
+}
+
+.texto-derecha {
+    color: #57E3A8;
+}
+
+canvas {
+    aspect-ratio: auto !important;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+@media (max-width: 800px) {
+    .echart1 {
+        transform: scale(.2);
+        width: 100%;
+        height:  100px
+    }
+}
+
+.chart-title {
+    font-weight: bold;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .chart-title {
+        font-size: 160px;
+        margin-bottom: 10px;
+    }
+    .echart2 {
+        width: 100% !important;
+    }
+
+    .chart-container {
+        transform: scale(0.8) translateY(-10vh);
+        /*height: 60vh !important;*/
+    }
+
+    .sticky-left-container {
+        transform: scale(.6) translateX(150px) translateY(calc(-24vh + -5%))
+    }
+}
+
+.transition {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1.3s ease-in-out;
+}
+
+.visible {
+    max-height: 100vh;
+}
+
+.pointLabel {
+    cursor: pointer;
+}
+
+.sticky-left-container {
+    padding: 0px;
+    margin: 0px;
+    position: fixed;
+    left: -503px;
+    top: 113px;
+    width: 538px;
+    z-index: 1;
+}
+
+.sticky-left li {
+    list-style-type: none;
+    background-color: grey;
+    color: #efefef;
+    height: 27px;
+    padding: 0px;
+    margin: 0px 0px 1px 0px;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+    .sticky-left li:hover {
+        margin-right: -300px;
+        background: #333;
+        border-radius: 0;
+    }
+
+    .sticky-left li a h4,
+    .sticky-left li a h5,
+    .sticky-left li a h6 {
+        font-size: 13px;
+        float: right;
+        border-radius: 50%;
+        margin: 6px 10px;
+        margin-left: 10px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+.sticky-left a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sticky-left li a p {
+    font-size: 12px;
+    padding: 0px;
+    color: #fff;
+    float: right;
+    margin: 0px;
+    line-height: 26px;
+}
+
+.caf-in {
+    background-color: #FE2502;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    position: fixed;
+    padding: 10px 5.5px;
+    top: 10px;
+    z-index: 4;
+    cursor: pointer;
+}
+
+    .caf-in p,
+    .caf-in h6 {
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+.caf-in2 {
+    background-color: black;
+    writing-mode: vertical-lr;
+    position: fixed;
+    padding: 10px 5.5px;
+    top: 10px;
+    z-index: 4;
+    cursor: pointer;
+}
+
+    .caf-in2 p,
+    .caf-in2 h6 {
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+
+@media(max-width: 800px){
+    .sticky-left-container {
+        padding: 0px;
+        margin: 0px;
+        position: fixed;
+        left: -503px;
+        top: 170px;
+        width: 538px;
+        z-index: 1;
+        color:red;
+    }
+
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #d9d9d9;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+#ComunasLabelSideMenu {
+    font-size: 28px;
+    padding: 8px 8px 4px 32px;
+    /*color:#818181;*/
+    color: #f1f1f1;
+    display: block;
+    transition: 0.2s;
+}
+
+.label-input-sideMenu {
+    font-size: 12px;
+    padding: 4px 4px 4px 16px;
+    /*color: #818181;
+    */
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+#marcar_todo {
+    font-size: small;
+}
