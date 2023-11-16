@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup desde tabla de Power BI</title>
+  <!-- Incluye la biblioteca de Power BI -->
+  <script src="https://app.powerbi.com/13.0.23620.171/scripts/iframeMessaging.js"></script>
+  <!-- Agrega esto en el encabezado de tu HTML -->
+    <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+  <!-- Contenedor del informe de Power BI -->
+  <div id="reportContainer" style="height: 600px;"></div>
+
+  <script>
+    // Configuración del informe
+    
+    const embedConfig = {
+      type: 'report',
+      id: 'e5462161-a2cf-4d0d-89be-2bdb4193f1d4', // Reemplaza con el ID de tu informe
+      embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiZTI1NzA0NjAtODdjOC00MTE4LTk5YzEtMWM3OWY0MzU2OGYxIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9', // Reemplaza con la URL de tu informe
+      tokenType: 'Embed',
+      accessToken: 'TU_TOKEN', // Reemplaza con tu token de acceso
+      settings: {
+        filterPaneEnabled: false,
+        navContentPaneEnabled: false
+      }
+    };
+
+    // Insertar el informe en el contenedor
+    const reportContainer = document.getElementById('reportContainer');
+    const report = powerbi.embed(reportContainer, embedConfig);
+
+
+
+
+    console.log(report)
+
+
+
+
+
+    // Manejar clic en la tabla
+    report.on('dataSelected', function(event) {
+        console.log(event.detail)
+      // Verificar si se seleccionó una fila
+      if (event.detail && event.detail.dataPoints && event.detail.dataPoints.length > 0) {
+        const filaSeleccionada = event.detail.dataPoints[0];
+        
+        // Obtener la URL de la columna correspondiente (ajusta según tu modelo de datos)
+        const urlColumna = filaSeleccionada.values[0];
+
+        // Abrir un popup con la URL
+        window.open(urlColumna, '_blank');
+      }
+    });
+
+
+    setTimeout(function () {
+        console.log($("a"))
+    }, 20000);
+  </script>
+</body>
+</html>

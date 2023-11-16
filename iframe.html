@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento con iframe</title>
+</head>
+<body>
+
+    <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiZTI1NzA0NjAtODdjOC00MTE4LTk5YzEtMWM3OWY0MzU2OGYxIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9">Aka</a>
+    <h1 onclick="alert('Hola')" >Hola</h1>
+    <!--
+    <iframe style="width:100%;height: 100vh;" src='https://infogram.com/c-2-alimentacion-1hnp27mrzj9vy2g?live'></iframe>
+    -->
+    <iframe onclick="alert('Hola')" style="width:100%;height: 100vh;" id="miIframe" src="https://app.powerbi.com/view?r=eyJrIjoiZTI1NzA0NjAtODdjOC00MTE4LTk5YzEtMWM3OWY0MzU2OGYxIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9"></iframe>
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+
+
+    <script>
+        document.addEventListener("click", function(event) {
+        // Verificar si el enlace tiene target="_blank"
+        if (event.target.tagName === "A") {
+            // Se está abriendo en una nueva ventana o pestaña
+            event.preventDefault();
+            console.log("Se está abriendo en una nueva ventana o pestaña");
+            
+            // Puedes realizar otras acciones aquí si es necesario
+        }
+        });
+
+        var miIframe = document.getElementById("miIframe");
+
+            // Accede al contenido del iframe
+        var contenidoIframe = miIframe.contentDocument || miIframe.contentWindow.document;
+        contenidoIframe.document.addEventListener("click", function(event) {
+            if (event.target.tagName === "A") {
+            // Se está abriendo en una nueva ventana o pestaña
+            event.preventDefault();
+            console.log("Se está abriendo en una nueva ventana o pestaña");
+            
+            // Puedes realizar otras acciones aquí si es necesario
+            }
+        })
+        console.log(contenidoIframe)
+        setTimeout(function () {
+            var miIframe = document.getElementById("miIframe");
+
+            // Accede al contenido del iframe
+            var contenidoIframe = miIframe.contentDocument || miIframe.contentWindow.document;
+            console.log("Hola")
+            console.log(contenidoIframe)
+
+        }, 1000);
+        /*
+        setTimeout(function () {
+            $("a").on("click", function (event) {
+                // Anular el enlace por defecto
+                event.preventDefault();
+
+                // Ejecutar la función saludar
+                alert('¡Hola!');
+            });
+            console.log("Volo")
+            var elementosA = $("html body div[1] report-embed div div[1] div div div div exploration-container div div docking-container div div div div exploration-host div div exploration div explore-canvas div div[2] div div[2] div[2] visual-container-repeat");
+            console.log(elementosA.html())
+            }, 20000);
+        */
+            /*
+        setTimeout(function () {
+            var iframeContenido = document.getElementById('miIframe').contentDocument;
+            console.log(document.getElementById('miIframe').contentDocument)
+            var script = iframeContenido.createElement('script');
+            script.type = 'text/javascript';
+            script.text = 'alert("Hola");'; // Llama a la función en el iframe
+            iframeContenido.head.appendChild(script);
+
+        }, 20000);
+*/
+
+        /*
+        $(document).ready(function () {
+            // Esperar a que el iframe esté cargado
+            $("#miIframe").on("load", function () {
+                // Obtener el contenido del iframe
+                var contenidoIframe = $(this).contents().find("body").html();
+
+                // Hacer el contenido del iframe parte del contenido principal
+                $("#contenidoPrincipal").append(contenidoIframe);
+            });
+            console.log("Listo")
+        });*/
+    </script>
+
+</body>
+</html>
