@@ -1,0 +1,80 @@
+ /*
+
+    console.log(report)
+
+
+
+
+
+    // Manejar clic en la tabla
+    report.on('dataSelected', function(event) {
+        console.log(event.detail)
+      // Verificar si se seleccionó una fila
+      if (event.detail && event.detail.dataPoints && event.detail.dataPoints.length > 0) {
+        const filaSeleccionada = event.detail.dataPoints[0];
+        
+        // Obtener la URL de la columna correspondiente (ajusta según tu modelo de datos)
+        const urlColumna = filaSeleccionada.values[0];
+
+        // Abrir un popup con la URL
+        window.open(urlColumna, '_blank');
+      }
+    });
+
+
+    setTimeout(function () {
+        console.log($("a"))
+    }, 20000);
+
+
+    function selectAllElements() {
+  // Obtener todas las páginas del informe
+        const pages = report.getPages();
+
+        // Recorrer cada página y seleccionar todos los elementos
+        pages.forEach(page => {
+          // Obtener todos los elementos de la página
+          const elements = page.getVisuals();
+
+          // Seleccionar cada elemento
+          elements.forEach(element => {
+            element.setSelected(true);
+          });
+        });
+      }
+
+      // Llamar a la función para seleccionar todos los elementos
+      selectAllElements();
+      */
+     /*
+      report.on('rendered', function(event)
+      {
+        console.log(0)
+          reportPages =  report.getPages();
+          console.log(1,reportPages)
+      });
+      let promesa = report.getPages();
+      promesa.then(function (pages) {
+
+          pages.forEach(function (page) {
+              page.getVisuals().then(function (widgets) {
+                  // 'widgets' contiene todos los widgets en la página actual
+                  console.log(widgets);
+              });
+          });
+      });
+      report.on("pageChanged", function (event) {
+              // Código a ejecutar cuando se seleccionan datos en el informe
+              console.log("pageChanged!!!!")
+          });
+      var eventos = "saved,rendered,saveAsTriggered,error,dataSelected,buttonClicked,filtersApplied,pageChanged,commandTriggered,swipeStart,swipeEnd,bookmarkApplied,dataHyperlinkClicked,visualRendered,visualClicked,selectionChanged";
+      //eventos = "loaded,saved,rendered,saveAsTriggered,error,dataSelected,buttonClicked,filtersApplied,pageChanged,commandTriggered,swipeStart,swipeEnd,bookmarkApplied"
+      setTimeout(function () {
+      eventos.split(",").forEach(x =>{
+          report.on(x, function (event) {
+              // Código a ejecutar cuando se seleccionan datos en el informe
+              console.log("Test")
+          });
+          console.log(x);
+          })
+        }, 20000);

@@ -4,63 +4,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Popup desde tabla de Power BI</title>
-  <!-- Incluye la biblioteca de Power BI -->
+  <!-- Incluye la biblioteca de Power BI
   <script src="https://app.powerbi.com/13.0.23620.171/scripts/iframeMessaging.js"></script>
-  <!-- Agrega esto en el encabezado de tu HTML -->
-    <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+  <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/powerbi-client/2.22.4/powerbi.min.js" integrity="sha512-ZMmyGjAz4cSAlJZVBrJnpcoWv2KVhPpH6H738XBYnPHY66xUC7QgmZNqBymp2WSAL3hZmdpFpVRkoB3mgET6jQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <!--
+     
+  -->
+  
+  <!-- Agrega esto en el encabezado de tu HTML
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/powerbi-client/2.7.5/powerbi.min.js" integrity="sha512-67xpxaugQ4PcrWgEIlK5TyyhYK5tg3FTWTADkG/30u7ImzfoohmDzVcdwjKO9bl3WKJhpweqE3zV85HYJbjkEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  -->
+    
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
   <!-- Contenedor del informe de Power BI -->
+  <div id="reportContainer2" style="height: 600px;"><iframe  src="https://app.powerbi.com/view?r=eyJrIjoiZTI1NzA0NjAtODdjOC00MTE4LTk5YzEtMWM3OWY0MzU2OGYxIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9&amp;uid=75c38a" scrolling="no" allowfullscreen="true" style="width: 100%; height: 100%;"></iframe></div>
   <div id="reportContainer" style="height: 600px;"></div>
 
   <script>
-    // Configuración del informe
+    var embedContainer = $('#reportContainer2')[0];
     
+    // Get a reference to the embedded report.
+    
+    
+
+
+    // Configuración del informe
+    var models = window['powerbi-client'].models;
     const embedConfig = {
       type: 'report',
       id: 'e5462161-a2cf-4d0d-89be-2bdb4193f1d4', // Reemplaza con el ID de tu informe
       embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiZTI1NzA0NjAtODdjOC00MTE4LTk5YzEtMWM3OWY0MzU2OGYxIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9', // Reemplaza con la URL de tu informe
-      tokenType: 'Embed',
-      accessToken: 'TU_TOKEN', // Reemplaza con tu token de acceso
+      //tokenType: models.TokenType.Embed,//,'Embed',
+      accessToken: 'H4sIAAAAAAAEAB1Wxw6sWA79l7dlJHIaqRcU-ZKhoCh25Jwzrfn3qe6VN5Zs-fiEv__Y8d2Ncfbnv3_GEBORLGLzpPIbUUoTa2ahFqc6xDcHVQx6q0wWDVv3sk_rzOslGcykfL6zha78o4eHJQF063CFq4kb6FiahI_EOwfMOyUeo_I0H1wrEj1_q-Gy3ipmKyg0_CSBayOhmsZC2yuHKJXWiWjdYEkIIdxKrax8QGpSzo7tQZvUJVTphZDrDlM5YejXXSXUo0NMsjtQKDul_61SfKUBgkAYFL8LiBso_jx1BJ-ICom_rxFq0oPj-1KmbftogLXm6VKJcZv0AybNAr-b7MFXGx-E7-AVwFGWIer8HI8DoEFChA9WohIWfu3eH24YflNAMqyXUHCoxWadFDD7yRgool12mLhkmL-5AKDzfJHqVnj75Hyt-u7y6gklM8Y1cdI4ax8dCnwobYwyQyZc093SmP5SchRX0Fez8GrqX8N9qmYdWa9BRwNENyDColtSlglNBo_TJe_cNCXdasUPNQxdmCc5CllQaDzcJMVGEqj2GoWsOysmcZa81H6ynKF8W9YQDEKUsJ29zSd5xDFzqqQmo69eLg8UbrMG24wym-EQWX38aR9cakMOTBTAJyqrClOoc5NZJzv4hLBr6JIn2vH05uPKnn5LHVwztQgcM0TpgjnAfH5yPHptuVFc51VQNVaQ7aViejjr3jjw2b4uiuLWJZ1ve28ZWxNoenExUQO7YTDt8fCEWp7QRnle5JXo_WPmnnJ2GcT2XnmoI-OXXH-363Z-k2IRht14VnaEXbwk6Ylfqi_X5K6cif4hAuSZGOBlTR-f0GrMVmkKvS9yvpNgHvLDqjTV18tB8r2se7UxB85liOzOC7EgfO7lcuxx5CLzFL3X42I6X6sOeDSTTiJYCP-9NlkwHxy2qVScQkdvAt-ymvCriYOwsV2HmuNzAzWjCuy2dv3LZdbuDaObYkY3BjtU9Exx5II8JohiQtz7KiHdCbCOjDCQwi5EPvJ0W5ofB6lRYN3e6SDhmUPBWPtYA7Cq-SLyFqO016Tfecx-v2TMNnXQKh1e3-WYlBqjNAhU4DjpIKB0k_0FKG5SBCQ9wqvgjhgY1epPJeS6PwA3E9tlAwVqN9Ixt-bw6ujvzaBnaaS6fG51QrIpqlwM_nWUTRRByHVSoEK1TVWDIH-_7TT01XCE1VAGAMcrjpK3QhKe803wCRk1SqHIv3cc7j1W2aBnNiyPaW-azJXiSnmOYn_0ngVru2JIiauXzijyhDH4qk5s2SL68Wk3sZ4X8HtreuScGrCeYHF3-1VsCAXO-vRk2zWJUzTM6LFXFLbYodyzkaEdkn4iaXWDBFoiLpi85iUQhGckSDQUkXDHjUFEcOYMh5wIbYll3EK-4doNKA6OVSkykNsrYOFj9dZYbu53ZOvJGHU3M3i1tr1RnE_xQZG8TFu-L87SR4zEjT919IjR523YZD09kn-rqskxgty50fwgyN3o8lpZiFJV2lUZdEk8diGJNEu7UifcXclirbHN-HvszX5kC6rErm75RNxHlUVo_k17BQcwBl1gflJNkWuzDH3FLo4jmF3uikr3mlf8RcJ8wd7eXKJkHWQyNBU9Amh9ehtiqh40mJ8fIqWlHUV5G51mTEusk1q2s76BN5FX-Gb9bfkgS9fvxRsTb-OZ-ZZ7FfHXuphC-aGz06ni1HyLqgXOmTh7ze7fuzR00ZVgoFWZYKTyuuRtRrGSnmNDLMsymAP7JLJL_JFjJ3ihKtrLfaY4FHGc3QsVd4HykeVOnVUf_Sdpt9GbGpcvmebkJiBjWx4_3EEn7VkVBkDzXdL27xsy7tYzFI6t5XlkifnZFA3EC-GsJgpQWuESDe6s6GOVdDk70r49Kh5cH63T91NAXxBDYqo1rQ8wALZ7tlXFOXxnJgk-Dk3W7VpB5HvCNSsCIhofpro_E4qACYJDKnvIKaOSI6ExagsJ5KuIBCbAKONw1nr8GJdd8v4hgqJbhQ66TwUV_nlg0YXU_E152Qt6v9wD5EeRzWpOLZ1QdIWW5yN4iq9TLFxEyHwgfUafQIPg8r0Y79ABeqlraE6Xznks5-sifOEYV0fNBJxwDr3PdeBdkABHs1NAwqsBI7nTYr5hFiYLi2cbsOFBF0K8Vd0yUlEl0PvWlX3Qvb-6pbVNaWctPS_WGTPboqGDEPYQWQAZn1_XDFYghPgnClN6YOM6w9-7lT_SXR7tbSn8mcrJ5yzkcGNixtfufBEOOF-zM6hLJ5mj4AlenirrvaGQeuAvp7WOgTlbBTK9rKT7ssCjvPKSKcxMfdIKPvBn_nEJ07lPGrEZhZuiHrfmhJUvHxWHeUkvrUE9v3NcYedR-l29_E-9GtvPUSTEeXi4NkoY7GrGnCAldHJxUaTc2id115-c5JMqULE-XXiwCD4QzpzqzmeRdjfubLcVi-t2MdlUA3nO923wRixLuLeIL5OCioZUj4njuU6kx8jg_PXnP3_45Z62UcvvX_RST_tCU1S6aSHwRsEyEHxvxmcvEFKw37Qp37E-BJFwbMeQn05hpesJIYFOFi4CJZP5cI99JLVOg9rVTxJV48mkMCfl92cvu1aXJy76YELF5rBtMXomb4n59WOXydoMR4mu_ImvFDsHSEPARzY9DW35PvjDLZ_QZnlOctpkBGnCzs1FUyqxyYrzo5jiHfHbDr5mgaj8WVKg3xhtiDbXbs3FOdHEQ4K8E6jPlJ6xBst0pp4IrjjqkZHfXYyiyUnCB6qw62FRI_W676xAdwld5-7SHPtjWKTa4aivprhpycMrUaBVPblAFg3NZzpwxFVHHfyzcs-CK5eJJKQTDIhG7POtReVf_575nqp8UYPfleM77SFKcwU8fBSzL5Q3yb-df7u8uhzibV_yXxvP_LOlZTMqdOb41zqqnbi5ASREn7MsbwayeaEEgvKuKupYBeniYghErTL3fSEZ-9xj05jVZNvY1fR0zXcp2FAsDpZfgrzu_RbJgjBzXIcuA6QUnqD1zwCBHzuZcnvdC5oixXiQxU6Yi0qNfBNk1WF0fcf7vDGK1sfvvJH9Mo5_bhzkVl8vDydckerciSPF9IsjBJuga5ZH1pPgGnKI1sak-W9OH6GBjDAd79vy5l10rzRmcxsQwKiiM88VT2X5uPiDfoX7Kq1fFA4DU9p9Qtg7dcL8gocJHZicDuFfncoMLf7FT9O4ZON9jN8LJkXvpG7vKuTt-9lc0nOqLXbYFZso5B8w_vd_HdORN24MAAA=.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLVNPVVRILUNFTlRSQUwtVVMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7Im1vZGVybkVtYmVkIjpmYWxzZX19', 
+      //permissions: models.Permissions.All,
+      
       settings: {
-        filterPaneEnabled: false,
-        navContentPaneEnabled: false
+        filterPaneEnabled: true,
+        navContentPaneEnabled: true
       }
     };
 
     // Insertar el informe en el contenedor
     const reportContainer = document.getElementById('reportContainer');
     const report = powerbi.embed(reportContainer, embedConfig);
+    var report2 = $('#reportContainer')[0].powerBiEmbed;
+    
+    
+    report2.on("visualClicked", function (event) {
+        // Accede a los parámetros del evento
+        var reportInstance = event.detail.report; // Instancia del informe
+        var pageInstance = event.detail.page; // Instancia de la página
+        var visualInstance = event.detail.visual; // Instancia del visual (widget)
 
+        // Hacer algo con los parámetros obtenidos
+        console.log("Informe:", reportInstance);
+        console.log("Página:", pageInstance);
+        console.log("Visual:", visualInstance);
+    });
+    
+     
+    
+    console.log(report2)
+    report2.iframe.onclick = () => console.log("Aki 4")
 
+    
 
-
-    console.log(report)
-
-
-
-
-
-    // Manejar clic en la tabla
-    report.on('dataSelected', function(event) {
-        console.log(event.detail)
-      // Verificar si se seleccionó una fila
-      if (event.detail && event.detail.dataPoints && event.detail.dataPoints.length > 0) {
-        const filaSeleccionada = event.detail.dataPoints[0];
-        
-        // Obtener la URL de la columna correspondiente (ajusta según tu modelo de datos)
-        const urlColumna = filaSeleccionada.values[0];
-
-        // Abrir un popup con la URL
-        window.open(urlColumna, '_blank');
-      }
+    
+    console.log(report2)
+    report2.allowedEvents.forEach(element => {
+      report2.on(element, function () {
+              // Código a ejecutar cuando se seleccionan datos en el informe
+              console.log("Test")
+          });
+          console.log(element);
+      
     });
 
+    //console.log($('#reportContainer')[0].powerBiEmbed.allowedEvents)
 
-    setTimeout(function () {
-        console.log($("a"))
-    }, 20000);
+    console.log(1)
+
+    report2.fullscreen();
+
   </script>
 </body>
 </html>

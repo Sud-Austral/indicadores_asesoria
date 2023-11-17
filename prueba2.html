@@ -27,11 +27,48 @@
     
 
     <div class="col-12 mt-5">
-        <iframe style="width: 100%;height: 50vh;" src="https://infogram.com/1pmney25jy1mlkf3732xvpn5wxszr771knd?live"></iframe>
+        <iframe style="width: 100%;height: 50vh;" id="infogram2" src="https://infogram.com/1pmney25jy1mlkf3732xvpn5wxszr771knd?live"></iframe>
 
     </div>
   </div>
 </div>
+<script>
+    function obtenerParametroDeURL(nombreParametro) {
+    // Obtener la URL actual
+    var url = window.location.href;
+
+    // Separar la URL en partes usando el caracter '?'
+    var partesURL = url.split("?");
+
+    // Verificar si hay parámetros en la URL
+    if (partesURL.length > 1) {
+        // Obtener la parte de los parámetros y dividirla en pares clave=valor
+        var parametros = partesURL[1].split("&");
+
+        // Recorrer los pares clave=valor para encontrar el parámetro deseado
+        for (var i = 0; i < parametros.length; i++) {
+            var parametro = parametros[i].split("=");
+
+            // Verificar si el nombre del parámetro coincide con el proporcionado
+            if (parametro[0] === nombreParametro) {
+                // Devolver el valor del parámetro
+                return parametro[1];
+            }
+        }
+    }
+
+    // Devolver null si el parámetro no se encuentra en la URL
+    return null;
+}
+
+// Ejemplo de uso:
+var valorParametro = obtenerParametroDeURL("url");
+$("#infogram2").attr("src", "https://" + valorParametro);
+console.log(valorParametro);
+
+
+
+</script>
 
 <!-- Enlaces a los archivos de Bootstrap 5 y Popper.js (necesario para algunos componentes) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
