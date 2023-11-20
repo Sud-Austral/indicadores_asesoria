@@ -20,8 +20,9 @@
     <div class="col-12 mt-5">
         <!--https://app.powerbi.com/reportEmbed?reportId=1c3585f6-7ac8-433f-af75-4e56462b9e60&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250
         <iframe style="width: 100%;height: 50vh;" src="https://app.powerbi.com/view?r=eyJrIjoiZTI1NzA0NjAtODdjOC00MTE4LTk5YzEtMWM3OWY0MzU2OGYxIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9"></iframe>
-            -->
-            <iframe style="width: 100%;height: 50vh;" src="https://app.powerbi.com/reportEmbed?reportId=1c3585f6-7ac8-433f-af75-4e56462b9e60&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250"></iframe>
+        https://app.powerbi.com/reportEmbed?reportId=1c3585f6-7ac8-433f-af75-4e56462b9e60&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250    
+        -->
+            <iframe style="width: 100%;height: 50vh;" src="https://app.powerbi.com/view?r=eyJrIjoiZTI1NzA0NjAtODdjOC00MTE4LTk5YzEtMWM3OWY0MzU2OGYxIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9"></iframe>
     </div>
 
     
@@ -35,19 +36,15 @@
     function obtenerParametroDeURL(nombreParametro) {
     // Obtener la URL actual
     var url = window.location.href;
-
     // Separar la URL en partes usando el caracter '?'
     var partesURL = url.split("?");
-
     // Verificar si hay parámetros en la URL
     if (partesURL.length > 1) {
         // Obtener la parte de los parámetros y dividirla en pares clave=valor
         var parametros = partesURL[1].split("&");
-
         // Recorrer los pares clave=valor para encontrar el parámetro deseado
         for (var i = 0; i < parametros.length; i++) {
             var parametro = parametros[i].split("=");
-
             // Verificar si el nombre del parámetro coincide con el proporcionado
             if (parametro[0] === nombreParametro) {
                 // Devolver el valor del parámetro
