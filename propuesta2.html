@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- <link rel="stylesheet" href="./css-1.css"> -->
+    <title>Fixed table</title>
+  </head>
+
+  <body>
+    <div class="heading">
+        <h1 id="titulo1">Propuesta N° 3</h1>
+        <!-- <button id="get-unique-values" onclick="getUniqueValuesFromColumn()">Get unique column values</button> -->
+      </div>
+      <div class="outer-wrapper">
+        <div class="table-wrapper">
+          <table id="emp-table">
+            <thead>
+              <th col-index="1">ID</th>
+              <th col-index="2">
+                Indicador
+                <select class="table-filter" onchange="filter_rows()">
+                  <option value="all"></option>
+                </select>
+              </th>
+  
+              <th col-index="3">
+                Categoria
+                <select class="table-filter" onchange="filter_rows()">
+                  <option value="all"></option>
+                </select>
+              </th>
+              <th col-index="4">
+                Region
+                <select class="table-filter" onchange="filter_rows()">
+                  <option value="all"></option>
+                </select>
+              </th>
+              <th col-index="5">
+                ODS
+                <select class="table-filter" onchange="filter_rows()">
+                  <option value="all"></option>
+                </select>
+              </th>
+              <th col-index="6">Link</th>
+            </thead>
+            <tbody></tbody>
+          </table>
+  
+          <!-- <script>getUniqueValuesFromColumn()
+      </script> -->
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+          <script>
+            function RenderFrame2(url) {
+              $("#infogram2").show();  
+              $("#infogram2").attr("src", url);
+              $("html, body").animate(
+                {
+                  scrollTop: 3310, //$('#infogram2').offset().bottom
+                },
+                3000
+              ); // 1000 milisegundos (1 segundo) para la animación, ajusta según sea necesario
+            }
+           
+            function llenarTabla(data) {
+              //Indicador: 'Indicador 140', Categoria: 'C2', Region: 'R5', ODS: 'Si', url:
+              var tbody = $("#emp-table tbody");              
+              let indice = 0;
+              data.forEach((elemento) => {
+                indice++;
+                var fila =
+                  `<tr onclick="RenderFrame2('${elemento.url}')" title="Haga click aquí para vizualisar el indicador ${elemento.Indicador }">` +
+                  "<td>" +
+                  indice +
+                  "</td>" +
+                  "<td>" +
+                  elemento.Indicador +
+                  "</td>" +
+                  "<td>" +
+                  elemento.Categoria +
+                  "</td>" +
+                  "<td>" +
+                  elemento.Region +
+                  "</td>" +
+                  "<td>" +
+                  elemento.ODS +
+                  "</td>" +
+                  "<td>Enlace</td>" +
+                  //'<td><a href="' + elemento.url + '">Enlace</a></td>' +
+                  "</tr>";
+                tbody.append(fila);
+              });
+            }
+  
+            const data = [
+              {
+                Indicador: "Indicador 1",
+                Categoria: "C4",
+                Region: "R7",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 2",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 3",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 4",
+                Categoria: "C4",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 5",
+                Categoria: "C1",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 6",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 7",
+                Categoria: "C3",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 8",
+                Categoria: "C1",
+                Region: "R7",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 9",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 10",
+                Categoria: "C3",
+                Region: "R2",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 11",
+                Categoria: "C2",
+                Region: "R5",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 12",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 13",
+                Categoria: "C1",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 14",
+                Categoria: "C3",
+                Region: "R4",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 15",
+                Categoria: "C3",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 16",
+                Categoria: "C4",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 17",
+                Categoria: "C2",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 18",
+                Categoria: "C2",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 19",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 20",
+                Categoria: "C3",
+                Region: "R7",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 21",
+                Categoria: "C4",
+                Region: "R5",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 22",
+                Categoria: "C3",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 23",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 24",
+                Categoria: "C4",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 25",
+                Categoria: "C2",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 26",
+                Categoria: "C4",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 27",
+                Categoria: "C2",
+                Region: "R5",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 28",
+                Categoria: "C2",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 29",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 30",
+                Categoria: "C2",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 31",
+                Categoria: "C3",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 32",
+                Categoria: "C2",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 33",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 34",
+                Categoria: "C3",
+                Region: "R5",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 35",
+                Categoria: "C3",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 36",
+                Categoria: "C2",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 37",
+                Categoria: "C1",
+                Region: "R6",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 38",
+                Categoria: "C1",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 39",
+                Categoria: "C4",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 40",
+                Categoria: "C1",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 41",
+                Categoria: "C1",
+                Region: "R2",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 42",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 43",
+                Categoria: "C2",
+                Region: "R4",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 44",
+                Categoria: "C4",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 45",
+                Categoria: "C1",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 46",
+                Categoria: "C4",
+                Region: "R6",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 47",
+                Categoria: "C4",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 48",
+                Categoria: "C3",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 49",
+                Categoria: "C1",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 50",
+                Categoria: "C3",
+                Region: "R7",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 51",
+                Categoria: "C3",
+                Region: "R5",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 52",
+                Categoria: "C2",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 53",
+                Categoria: "C4",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 54",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 55",
+                Categoria: "C4",
+                Region: "R7",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 56",
+                Categoria: "C3",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 57",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 58",
+                Categoria: "C2",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 59",
+                Categoria: "C2",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 60",
+                Categoria: "C2",
+                Region: "R4",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 61",
+                Categoria: "C4",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 62",
+                Categoria: "C1",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 63",
+                Categoria: "C1",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 64",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 65",
+                Categoria: "C4",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 66",
+                Categoria: "C1",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 67",
+                Categoria: "C4",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 68",
+                Categoria: "C3",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 69",
+                Categoria: "C1",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 70",
+                Categoria: "C3",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 71",
+                Categoria: "C2",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 72",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 73",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 74",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 75",
+                Categoria: "C1",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 76",
+                Categoria: "C2",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 77",
+                Categoria: "C3",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 78",
+                Categoria: "C1",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 79",
+                Categoria: "C1",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 80",
+                Categoria: "C2",
+                Region: "R4",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 81",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 82",
+                Categoria: "C2",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 83",
+                Categoria: "C4",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 84",
+                Categoria: "C3",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 85",
+                Categoria: "C1",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 86",
+                Categoria: "C1",
+                Region: "R6",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 87",
+                Categoria: "C4",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 88",
+                Categoria: "C4",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 89",
+                Categoria: "C1",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 90",
+                Categoria: "C1",
+                Region: "R3",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 91",
+                Categoria: "C3",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 92",
+                Categoria: "C4",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 93",
+                Categoria: "C3",
+                Region: "R3",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 94",
+                Categoria: "C2",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 95",
+                Categoria: "C3",
+                Region: "R3",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 96",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 97",
+                Categoria: "C3",
+                Region: "R2",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 98",
+                Categoria: "C1",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 99",
+                Categoria: "C1",
+                Region: "R3",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 100",
+                Categoria: "C1",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 101",
+                Categoria: "C4",
+                Region: "R2",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 102",
+                Categoria: "C1",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 103",
+                Categoria: "C4",
+                Region: "R1",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 104",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 105",
+                Categoria: "C2",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 106",
+                Categoria: "C3",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 107",
+                Categoria: "C1",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 108",
+                Categoria: "C4",
+                Region: "R6",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 109",
+                Categoria: "C3",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 110",
+                Categoria: "C1",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 111",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 112",
+                Categoria: "C2",
+                Region: "R4",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 113",
+                Categoria: "C3",
+                Region: "R4",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 114",
+                Categoria: "C4",
+                Region: "R4",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 115",
+                Categoria: "C2",
+                Region: "R4",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 116",
+                Categoria: "C3",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 117",
+                Categoria: "C4",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 118",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 119",
+                Categoria: "C4",
+                Region: "R7",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 120",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 121",
+                Categoria: "C3",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 122",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 123",
+                Categoria: "C3",
+                Region: "R8",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 124",
+                Categoria: "C4",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 125",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 126",
+                Categoria: "C3",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 127",
+                Categoria: "C1",
+                Region: "R4",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 128",
+                Categoria: "C3",
+                Region: "R2",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 129",
+                Categoria: "C4",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 130",
+                Categoria: "C3",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 131",
+                Categoria: "C2",
+                Region: "R6",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 132",
+                Categoria: "C3",
+                Region: "R1",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 133",
+                Categoria: "C2",
+                Region: "R7",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 134",
+                Categoria: "C1",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 135",
+                Categoria: "C3",
+                Region: "R6",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 136",
+                Categoria: "C4",
+                Region: "R3",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 137",
+                Categoria: "C1",
+                Region: "R2",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 138",
+                Categoria: "C1",
+                Region: "R6",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 139",
+                Categoria: "C4",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 140",
+                Categoria: "C2",
+                Region: "R5",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 141",
+                Categoria: "C1",
+                Region: "R8",
+                ODS: "Si",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+              {
+                Indicador: "Indicador 142",
+                Categoria: "C3",
+                Region: "R5",
+                ODS: "No",
+                url: "https:\\/\\/github.com\\/Sud-Austral\\/indicadores_asesoria\\/raw\\/main\\/PRUEBA-GITHUB_INFOGRAM.xlsx",
+              },
+            ];
+            const data2 = data.map((x) => {
+              x["url"] =
+                "https://infogram.com/c-1-consumo-de-agua-1h1749vgnqy3q6z?live";
+              return x;
+            });
+  
+            llenarTabla(data2);
+            // Get unique values for the desired columns
+  
+            // {2 : ["M", "F"], 3 : ["RnD", "Engineering", "Design"], 4 : [], 5 : []}
+  
+            function getUniqueValuesFromColumn() {
+              var unique_col_values_dict = {};
+  
+              allFilters = document.querySelectorAll(".table-filter");
+              allFilters.forEach((filter_i) => {
+                col_index = filter_i.parentElement.getAttribute("col-index");
+                // alert(col_index)
+                const rows = document.querySelectorAll("#emp-table > tbody > tr");
+  
+                rows.forEach((row) => {
+                  cell_value = row.querySelector(
+                    "td:nth-child(" + col_index + ")"
+                  ).innerHTML;
+                  // if the col index is already present in the dict
+                  if (col_index in unique_col_values_dict) {
+                    // if the cell value is already present in the array
+                    if (unique_col_values_dict[col_index].includes(cell_value)) {
+                      // alert(cell_value + " is already present in the array : " + unique_col_values_dict[col_index])
+                    } else {
+                      unique_col_values_dict[col_index].push(cell_value);
+                      // alert("Array after adding the cell value : " + unique_col_values_dict[col_index])
+                    }
+                  } else {
+                    unique_col_values_dict[col_index] = new Array(cell_value);
+                  }
+                });
+              });
+              /*
+      for(i in unique_col_values_dict) {
+          alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);
+      }
+      */
+              updateSelectOptions(unique_col_values_dict);
+            }
+  
+            // Add <option> tags to the desired columns based on the unique values
+  
+            function updateSelectOptions(unique_col_values_dict) {
+              allFilters = document.querySelectorAll(".table-filter");
+  
+              allFilters.forEach((filter_i) => {
+                col_index = filter_i.parentElement.getAttribute("col-index");
+  
+                unique_col_values_dict[col_index].forEach((i) => {
+                  filter_i.innerHTML =
+                    filter_i.innerHTML + `\n<option value="${i}">${i}</option>`;
+                });
+              });
+            }
+  
+            // Create filter_rows() function
+  
+            // filter_value_dict {2 : Value selected, 4:value, 5: value}
+  
+            function filter_rows() {
+              allFilters = document.querySelectorAll(".table-filter");
+              var filter_value_dict = {};
+  
+              allFilters.forEach((filter_i) => {
+                col_index = filter_i.parentElement.getAttribute("col-index");
+  
+                value = filter_i.value;
+                if (value != "all") {
+                  filter_value_dict[col_index] = value;
+                }
+              });
+  
+              var col_cell_value_dict = {};
+  
+              const rows = document.querySelectorAll("#emp-table tbody tr");
+              rows.forEach((row) => {
+                var display_row = true;
+  
+                allFilters.forEach((filter_i) => {
+                  col_index = filter_i.parentElement.getAttribute("col-index");
+                  col_cell_value_dict[col_index] = row.querySelector(
+                    "td:nth-child(" + col_index + ")"
+                  ).innerHTML;
+                });
+  
+                for (var col_i in filter_value_dict) {
+                  filter_value = filter_value_dict[col_i];
+                  row_cell_value = col_cell_value_dict[col_i];
+  
+                  if (
+                    row_cell_value.indexOf(filter_value) == -1 &&
+                    filter_value != "all"
+                  ) {
+                    display_row = false;
+                    break;
+                  }
+                }
+  
+                if (display_row == true) {
+                  row.style.display = "table-row";
+                } else {
+                  row.style.display = "none";
+                }
+              });
+            }
+          </script>
+  
+          <style>
+            * {
+              margin: 0px;
+              padding: 0;
+              font-family: Arial, Helvetica, sans-serif;
+            }
+  
+            .heading {
+              display: flex;
+              background-color: #085803;
+              box-shadow: 0px 1px 2px #232f3e;
+            }
+            #titulo1 {
+              color: white;
+              font-weight: bold;
+  
+              background: transparent;
+              padding: 7px;
+            }
+  
+            .outer-wrapper {
+              margin-top: 40px;
+              margin-left: 20px;
+              margin-right: 20px;
+              border: 1px solid black;
+              border-radius: 4px;
+              box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+              max-width: fit-content;
+              max-height: fit-content;
+            }
+            .table-wrapper {
+              overflow-y: scroll;
+              overflow-x: scroll;
+              height: fit-content;
+              max-height: 66.4vh;
+  
+              margin-top: 22px;
+  
+              margin: 15px;
+              padding-bottom: 20px;
+            }
+  
+            table {
+              min-width: max-content;
+  
+              border-collapse: separate;
+              border-spacing: 0px;
+            }
+  
+            .table-filter {
+              border-radius: 5px;
+            }
+  
+            table th {
+              position: sticky;
+              top: 0px;
+  
+              background-color: #085803;
+              color: rgb(241, 245, 179);
+  
+              text-align: center;
+              font-weight: normal;
+              font-size: 18px;
+              outline: 0.7px solid black;
+              border: 1.5px solid black;
+            }
+  
+            table th,
+            table td {
+              padding: 15px;
+              padding-top: 10px;
+              padding-bottom: 10px;
+            }
+  
+            table td {
+              text-align: left;
+  
+              font-size: 15px;
+              border: 1px solid rgb(177, 177, 177);
+              padding-left: 20px;
+            }
+  
+            tr {
+              cursor: pointer;
+            }
+          </style>
+          <script>
+            /*
+          window.onload = () => {
+              console.log(document.querySelector("#emp-table > tbody > tr:nth-child(1) > td:nth-child(2) ").innerHTML);
+          };
+          */
+            getUniqueValuesFromColumn();
+          </script>
+        </div>
+      </div>
+  
+      <div class="col-12 mt-5">
+        <iframe style="width: 100%; height: 100vh" id="infogram2" src="">
+        </iframe>
+      </div>
+      <script>
+        $("#infogram2").hide();
+      </script>
+  </body>
+</html>
