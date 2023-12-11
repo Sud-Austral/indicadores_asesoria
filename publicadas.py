@@ -15,4 +15,4 @@ def proceso2():
 
 if __name__ == '__main__':
     print("Publicadas...")
-    proceso2()
+    #proceso2()
