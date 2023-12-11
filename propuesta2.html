@@ -19433,400 +19433,425 @@
 </script>
 
 <body>
-  <h3 id="analisis_id">
-    <span class="ui-provider vw b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak"
-      dir="ltr">Buscador de Indicadores</span>
-  </h3>
-
-  <div class="outer-wrapper" style="
-        margin: 0 !important;
-        margin-top: 10px !important;
-        padding: 2px !important;
-      ">
-    <div class="table-wrapper" style="margin: 0 !important; padding: 0 !important">
-      <table id="emp-table" style="
-            margin: 0 !important;
-            padding: 0 !important;
-            background-color: white !important;
-          ">
-        <thead>
-          <th col-index="1" style="width: 10px !important">
-            <span>Región</span> <br />
-          </th>
-          <th col-index="2" style="width: 10px !important">
-            Capítulo REMA<br />
-          </th>
-          <th col-index="3" style="width: 10px !important">
-            Categorías UNEP GEO<br />
-          </th>
-
-          <th col-index="4" style="width: 10px !important">
-            Categorías OECD EAG<br />
-          </th>
-
-          <th col-index="5" style="width: 10px !important">ODS<br /></th>
-          <th col-index="6" style="width: 10px !important">Fuente<br /></th>
-
-          <th col-index="7" style="width: 10px !important">Eje<br /></th>
-
-          <th col-index="8" style="width: 10px !important">
-            Indicador<br />
-          </th>
-        </thead>
-        <thead>
-          <td col-index="1" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" id="select_region" style="width: 8vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-          <td col-index="2" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" style="width: 7.5vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-          <td col-index="3" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" style="width: 7.5vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-
-          <td col-index="4" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" style="width: 7.5vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-
-          <td col-index="5" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" style="width: 3.5vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-          <td col-index="6" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" style="width: 7.5vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-
-          <td col-index="7" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" style="width: 7.5vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-
-          <td col-index="8" style="width: 10px !important; background-color: #9ec451">
-            <select class="table-filter" style="width: 10.8vw !important" onchange="filter_rows()">
-              <option value="all"></option>
-            </select>
-          </td>
-        </thead>
-        <tbody></tbody>
-      </table>
-
-      <!-- <script>getUniqueValuesFromColumn()
-    </script> -->
-      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <script>
-        function RenderFrame2(url) {
-          $("#infogram2").show();
-          $("#infogram2").attr("src", url);
-          $("html, body").animate(
-            {
-              scrollTop: 3310, //$('#infogram2').offset().bottom
-            },
-            3000
-          ); // 1000 milisegundos (1 segundo) para la animación, ajusta según sea necesario
-        }
-
-        function llenarTabla(data) {
-          //Indicador: 'Indicador 140', Categoria: 'C2', Region: 'R5', ODS: 'Si', url:
-          var tbody = $("#emp-table tbody");
-          //var tbody = $("#table_prime");
-
-          let indice = 0;
-          data.forEach((elemento) => {
-            /*
-            "Indicador"
-              1
-              : 
-              "Capítulo REMA"
-              2
-              : 
-              "Categorías UNEP GEO"
-              3
-              : 
-              "Categorías OECD EAG"
-              4
-              : 
-              "ODS"
-              5
-              : 
-              "Fuente"
-              6
-              : 
-              "Eje"
-              7
-              : 
-              "Nombre indicador separado"
-              8
-              : 
-              "Enlace visualización IFG"
-              9
-              : 
-              "Región"
-              10
-              : 
-              "Valor"
-            */
-
-            indice++;
-            var fila =
-              `<tr onclick="RenderFrame2('${elemento["Enlace visualización IFG"]}')" title="Haga click aquí para vizualisar el indicador ${elemento.Indicador}">` +
-              "<td>" +
-              elemento["Región"]
-                .replace("Región de ", "")
-                .replace("Región ", "")
-                .replace("del ", "") +
-              "</td>" +
-              "<td>" +
-              elemento["Capítulo REMA"] +
-              "</td>" +
-              "<td>" +
-              elemento["Categorías UNEP GEO"] +
-              "</td>" +
-              "<td>" +
-              elemento["Categorías OECD EAG"] +
-              "</td>" +
-              "<td>" +
-              elemento["ODS"] +
-              "</td>" +
-              "<td>" +
-              elemento["Fuente"] +
-              "</td>" +
-              "<td>" +
-              elemento["Eje"] +
-              "</td>" +
-              "<td>" +
-              elemento.Indicador +
-              "</td>" +
-              "</tr>";
-            tbody.append(fila);
-          });
-        }
-
-        llenarTabla(data2);
-        // Get unique values for the desired columns
-        // {2 : ["M", "F"], 3 : ["RnD", "Engineering", "Design"], 4 : [], 5 : []}
-        function getUniqueValuesFromColumn() {
-          var unique_col_values_dict = {};
-
-          allFilters = document.querySelectorAll(".table-filter");
-
-          allFilters.forEach((filter_i) => {
-            col_index = filter_i.parentElement.getAttribute("col-index");
-            // alert(col_index)
-            const rows = document.querySelectorAll("#emp-table > tbody > tr");
-            console.log("IMPORTANTE rows", rows);
-            rows.forEach((row) => {
-              cell_value = row.querySelector(
-                "td:nth-child(" + col_index + ")"
-              ).innerHTML;
-              // if the col index is already present in the dict
-              if (col_index in unique_col_values_dict) {
-                // if the cell value is already present in the array
-                if (unique_col_values_dict[col_index].includes(cell_value)) {
-                  // alert(cell_value + " is already present in the array : " + unique_col_values_dict[col_index])
-                } else {
-                  unique_col_values_dict[col_index].push(cell_value);
-                  // alert("Array after adding the cell value : " + unique_col_values_dict[col_index])
-                }
-              } else {
-                unique_col_values_dict[col_index] = new Array(cell_value);
-              }
+  <style>
+    .titulo_banner{
+      height:80px;
+      border-radius: 20px;
+      text-align: center;		
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .titulo_banner span{
+      color:white;
+      text-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
+    }
+      .contenedor {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .primer-hijo {
+      flex: 1;
+      /* Otros estilos para el primer hijo, si es necesario */
+    }
+  
+    .segundo-hijo {
+      flex: 1;
+      /* Otros estilos para el segundo hijo, si es necesario */
+    }
+    
+  </style>
+  <h3 id="analisis_id" class="body1 titulo_banner body_general">
+      <span class="ui-provider vw b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak"
+        dir="ltr">Buscador de Indicadores</span>
+    </h3>
+  
+    <div class="outer-wrapper" style="
+          margin: 0 !important;
+          margin-top: 10px !important;
+          padding: 2px !important;
+        ">
+      <div class="table-wrapper" style="margin: 0 !important; padding: 0 !important">
+        <table id="emp-table" style="
+              margin: 0 !important;
+              padding: 0 !important;
+              background-color: white !important;
+            ">
+          <thead>
+            <tr>
+            <th col-index="1" style="width: 10px !important">
+              <span>Región</span> <br />					
+              
+            </th>
+            <th col-index="2" style="width: 10px !important">
+              Capítulo REMA<br />
+            </th>
+            <th col-index="3" style="width: 10px !important">
+              Categorías UNEP GEO<br />
+            </th>
+  
+            <th col-index="4" style="width: 10px !important">
+              Categorías OECD EAG<br />
+            </th>
+            <th col-index="5" style="width: 10px !important">ODS<br /></th>
+            <th col-index="6" style="width: 10px !important">Fuente<br /></th>
+            <th col-index="7" style="width: 10px !important">
+              Indicador<br />
+            </th>
+              </tr>
+            
+          </thead>
+          <thead>
+            <td col-index="1" style="width: 10px !important; background-color: #9ec451">
+              <select class="table-filter" id="select_region" style="width: 8.5em !important" onchange="filter_rows()">
+                    <option value="all"></option>
+                  </select>
+            </td>
+            <td col-index="2" style="width: 10px !important; background-color: #9ec451">
+              <select class="table-filter" style="width: 8.5em !important" onchange="filter_rows()">
+                <option value="all"></option>
+              </select>
+            </td>
+            <td col-index="3" style="width: 10px !important; background-color: #9ec451">
+              <select class="table-filter" style="width: 8.5em !important" onchange="filter_rows()">
+                <option value="all"></option>
+              </select>
+            </td>
+  
+            <td col-index="4" style="width: 10px !important; background-color: #9ec451">
+              <select class="table-filter" style="width: 8.5em !important" onchange="filter_rows()">
+                <option value="all"></option>
+              </select>
+            </td>
+  
+            <td col-index="5" style="width: 10px !important; background-color: #9ec451">
+              <select class="table-filter" style="width: 2em !important" onchange="filter_rows()">
+                <option value="all"></option>
+              </select>
+            </td>
+            <td col-index="6" style="width: 10px !important; background-color: #9ec451">
+              <select class="table-filter" style="width: 8.5em !important" onchange="filter_rows()">
+                <option value="all"></option>
+              </select>
+            </td>
+            <td col-index="7" style="width: 10px !important; background-color: #9ec451">
+              <select class="table-filter" style="width: 8.5em !important" onchange="filter_rows()">
+                <option value="all"></option>
+              </select>
+            </td>
+          </thead>			
+          
+          <tbody></tbody>
+        </table>
+  
+        <!-- <script>getUniqueValuesFromColumn()
+      </script> -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+          function RenderFrame2(url) {
+            $("#infogram2").show();
+            $("#infogram2").attr("src", url);
+            $("html, body").animate(
+              {
+                scrollTop: $('#infogram2').offset().top - 90
+              },
+              3000
+            ); // 1000 milisegundos (1 segundo) para la animación, ajusta según sea necesario
+          }
+  
+          function llenarTabla(data) {
+            //Indicador: 'Indicador 140', Categoria: 'C2', Region: 'R5', ODS: 'Si', url:
+            var tbody = $("#emp-table tbody");
+            //var tbody = $("#table_prime");
+  
+            let indice = 0;
+            data.forEach((elemento) => {
+              indice++;
+              var fila =
+                `<tr onclick="RenderFrame2('${elemento["Enlace visualización IFG"]}')" title="Haga click aquí para vizualisar el indicador ${elemento.Indicador}">` +
+                "<td>" +
+                elemento["Región"]
+                  .replace("Región de ", "")
+                  .replace("Región ", "")
+                  .replace("del ", "") +
+                "</td>" +
+                "<td>" +
+                elemento["Capítulo REMA"] +
+                "</td>" +
+                "<td>" +
+                elemento["Categorías UNEP GEO"] +
+                "</td>" +
+                "<td>" +
+                elemento["Categorías OECD EAG"] +
+                "</td>" +
+                "<td>" +
+                elemento["ODS"] +
+                "</td>" +
+                "<td>" +
+                elemento["Fuente"] +
+                "</td>" +
+                "<td>" +
+                elemento.Indicador +
+                "</td>" +
+                "</tr>";
+              tbody.append(fila);
             });
-          });
-          /*
-  for(i in unique_col_values_dict) {
-      alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);
-  }
-  */
-          updateSelectOptions(unique_col_values_dict);
-        }
-
-        // Add <option> tags to the desired columns based on the unique values
-
-        function updateSelectOptions(unique_col_values_dict) {
-          allFilters = document.querySelectorAll(".table-filter");
-
-          allFilters.forEach((filter_i) => {
-            col_index = filter_i.parentElement.getAttribute("col-index");
-
-            unique_col_values_dict[col_index].forEach((i) => {
-              filter_i.innerHTML =
-                filter_i.innerHTML + `\n<option value="${i}">${i}</option>`;
-            });
-          });
-        }
-
-        // Create filter_rows() function
-
-        // filter_value_dict {2 : Value selected, 4:value, 5: value}
-
-        function filter_rows() {
-          allFilters = document.querySelectorAll(".table-filter");
-          var filter_value_dict = {};
-
-          allFilters.forEach((filter_i) => {
-            col_index = filter_i.parentElement.getAttribute("col-index");
-
-            value = filter_i.value;
-            if (value != "all") {
-              filter_value_dict[col_index] = value;
-            }
-          });
-
-          var col_cell_value_dict = {};
-
-          const rows = document.querySelectorAll("#emp-table tbody tr");
-          rows.forEach((row) => {
-            var display_row = true;
-
+          }
+  
+          llenarTabla(data2);
+          // Get unique values for the desired columns
+          // {2 : ["M", "F"], 3 : ["RnD", "Engineering", "Design"], 4 : [], 5 : []}
+          function getUniqueValuesFromColumn() {
+            var unique_col_values_dict = {};
+  
+            allFilters = document.querySelectorAll(".table-filter");
+  
             allFilters.forEach((filter_i) => {
               col_index = filter_i.parentElement.getAttribute("col-index");
-              col_cell_value_dict[col_index] = row.querySelector(
-                "td:nth-child(" + col_index + ")"
-              ).innerHTML;
+              // alert(col_index)
+              const rows = document.querySelectorAll("#emp-table > tbody > tr");
+              rows.forEach((row) => {
+                cell_value = row.querySelector(
+                  "td:nth-child(" + col_index + ")"
+                ).innerHTML;
+                // if the col index is already present in the dict
+                if (col_index in unique_col_values_dict) {
+                  // if the cell value is already present in the array
+                  if (unique_col_values_dict[col_index].includes(cell_value)) {
+                    // alert(cell_value + " is already present in the array : " + unique_col_values_dict[col_index])
+                  } else {
+                    unique_col_values_dict[col_index].push(cell_value);
+                    // alert("Array after adding the cell value : " + unique_col_values_dict[col_index])
+                  }
+                } else {
+                  unique_col_values_dict[col_index] = new Array(cell_value);
+                }
+              });
             });
+            /*
+    for(i in unique_col_values_dict) {
+        alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);
+    }
+    */
+            updateSelectOptions(unique_col_values_dict);
+          }
 
-            for (var col_i in filter_value_dict) {
-              filter_value = filter_value_dict[col_i];
-              row_cell_value = col_cell_value_dict[col_i];
+          function updateSelectOptions2(){
+            var unique_col_values_dict = {};
+  
+            allFilters = document.querySelectorAll(".table-filter");
+  
+            allFilters.forEach((filter_i) => {
+              col_index = filter_i.parentElement.getAttribute("col-index");
+              // alert(col_index)
+              const rows = document.querySelectorAll("#emp-table > tbody > tr[style='display: table-row;']")
+              rows.forEach((row) => {
+                
+                cell_value = row.querySelector(
+                  "td:nth-child(" + col_index + ")"
+                ).innerHTML;
+                
+                // if the col index is already present in the dict
+                if (col_index in unique_col_values_dict) {
+                  // if the cell value is already present in the array
+                  if (unique_col_values_dict[col_index].includes(cell_value)) {
+                    // alert(cell_value + " is already present in the array : " + unique_col_values_dict[col_index])
+                  } else {
+                    unique_col_values_dict[col_index].push(cell_value);
+                    // alert("Array after adding the cell value : " + unique_col_values_dict[col_index])
+                  }
+                } else {
+                  unique_col_values_dict[col_index] = new Array(cell_value);
+                }
+              });
+            });
+            /*
+    for(i in unique_col_values_dict) {
+        alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);
+    }
+    */
+            updateSelectOptions(unique_col_values_dict);
 
-              if (
-                row_cell_value.indexOf(filter_value) == -1 &&
-                filter_value != "all"
-              ) {
-                display_row = false;
-                break;
+          }
+  
+          // Add <option> tags to the desired columns based on the unique values
+  
+          function updateSelectOptions(unique_col_values_dict) {
+            allFilters = document.querySelectorAll(".table-filter");
+  
+            allFilters.forEach((filter_i) => {
+              col_index = filter_i.parentElement.getAttribute("col-index");
+              filter_i.innerHTML = '<option value="all"></option>';
+              unique_col_values_dict[col_index].forEach((i) => {
+                filter_i.innerHTML =
+                  filter_i.innerHTML + `\n<option value="${i}">${i}</option>`;
+              });
+            });
+          }
+  
+          // Create filter_rows() function
+  
+          // filter_value_dict {2 : Value selected, 4:value, 5: value}
+  
+          function filter_rows() {
+            allFilters = document.querySelectorAll(".table-filter");
+            var filter_value_dict = {};
+  
+            allFilters.forEach((filter_i) => {
+              col_index = filter_i.parentElement.getAttribute("col-index");
+  
+              value = filter_i.value;
+              if (value != "all") {
+                filter_value_dict[col_index] = value;
               }
-            }
-
-            if (display_row == true) {
-              row.style.display = "table-row";
-            } else {
-              row.style.display = "none";
-            }
-          });
-        }
-      </script>
-
-      <style>
-        /*
-        * {
-          margin: 0px;
-          padding: 0;
-          font-family: Arial, Helvetica, sans-serif;
-        }
-        */
-        .heading {
-          display: flex;
-          background-color: #9ec451;
-          box-shadow: 0px 1px 2px #232f3e;
-        }
-
-        #titulo1 {
-          color: white;
-          font-weight: bold;
-
-          background: transparent;
-          padding: 7px;
-        }
-
-        .outer-wrapper {
-          margin-top: 40px;
-          margin-left: 20px;
-          margin-right: 20px;
+            });
+  
+            var col_cell_value_dict = {};
+  
+            const rows = document.querySelectorAll("#emp-table tbody tr");
+            rows.forEach((row) => {
+              var display_row = true;
+  
+              allFilters.forEach((filter_i) => {
+                col_index = filter_i.parentElement.getAttribute("col-index");
+                col_cell_value_dict[col_index] = row.querySelector(
+                  "td:nth-child(" + col_index + ")"
+                ).innerHTML;
+              });
+  
+              for (var col_i in filter_value_dict) {
+                filter_value = filter_value_dict[col_i];
+                row_cell_value = col_cell_value_dict[col_i];
+  
+                if (
+                  row_cell_value.indexOf(filter_value) == -1 &&
+                  filter_value != "all"
+                ) {
+                  display_row = false;
+                  break;
+                }
+              }
+  
+              if (display_row == true) {
+                row.style.display = "table-row";
+              } else {
+                row.style.display = "none";
+              }
+            });
+            updateSelectOptions2()
+          }
+        </script>
+  
+        <style>
           /*
-            border: 1px solid black;
-            border-radius: 4px;
-            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
-            */
-          max-width: fit-content;
-          max-height: fit-content;
-        }
-
-        .table-wrapper {
-          overflow-y: scroll;
-          overflow-x: scroll;
-          height: fit-content;
-          max-height: 66.4vh;
-
-          margin-top: 22px;
-
-          margin: 15px;
-          padding-bottom: 20px;
-        }
-
-        .table-wrapper table {
-          min-width: max-content;
-          border-collapse: separate;
-          border-spacing: 0px;
-        }
-
-        .table-filter {
-          border-radius: 5px;
-        }
-
-        .table-wrapper table th {
-          position: sticky;
-          top: 0px;
-          background-color: white;
-          color: black;
-          text-align: center;
-          font-weight: normal;
-          font-size: 15px;
-          /*
-            outline: 0.7px solid black;
-            border: 1.5px solid black;
-            */
-        }
-
-        .table-wrapper table th,
-        .table-wrapper table td {
-          padding: 15px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-
-        .table-wrapper table td {
-          text-align: left;
-          font-size: 15px;
-          background-color: red;
-          /*
-            border: 1px solid rgb(177, 177, 177);
-            */
-          padding-left: 20px;
-        }
-
-        tr {
-          cursor: pointer;
-        }
-      </style>
-      <script>
-        getUniqueValuesFromColumn();
-      </script>
+          * {
+            margin: 0px;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+          }
+          */
+          .heading {
+            display: flex;
+            background-color: #9ec451;
+            box-shadow: 0px 1px 2px #232f3e;
+          }
+  
+          #titulo1 {
+            color: white;
+            font-weight: bold;
+  
+            background: transparent;
+            padding: 7px;
+          }
+  
+          .outer-wrapper {
+            margin-top: 40px;
+            margin-left: 20px;
+            margin-right: 20px;
+            /*
+              border: 1px solid black;
+              border-radius: 4px;
+              box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+              */
+            max-width: fit-content;
+            max-height: fit-content;
+          }
+  
+          .table-wrapper {
+            overflow-y: scroll;
+            overflow-x: scroll;
+            height: fit-content;
+            max-height: 66.4vh;
+  
+            margin-top: 22px;
+  
+            margin: 15px;
+            padding-bottom: 20px;
+          }
+  
+          .table-wrapper table {
+            min-width: max-content;
+            border-collapse: separate;
+            border-spacing: 0px;
+          }
+  
+          .table-filter {
+            border-radius: 5px;
+          }
+  
+          .table-wrapper table th{
+            position: sticky;
+            top: 0px;
+            background-color: white;
+            color: black;
+            text-align: center;
+            font-weight: normal;
+            font-size: 15px;
+          }
+          
+          .table-wrapper table thead td{
+            position: sticky;
+            top: 50px;
+            background-color: red;
+            color: black;
+            text-align: center;
+            font-weight: normal;
+            font-size: 14px;
+          }
+  
+          .table-wrapper table th,
+          .table-wrapper table td {
+            padding: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
+  
+          .table-wrapper table td {
+            text-align: left;
+            font-size: 14px;
+            padding-left: 20px;
+          }
+  
+          tr {
+            cursor: pointer;
+          }
+        </style>
+      </div>
     </div>
-  </div>
-
-  <div class="col-12 mt-5">
-    <iframe style="width: 100%; height: 100vh" id="infogram2" src="">
-    </iframe>
-  </div>
-  <script>
-    $("#infogram2").hide();
-    $("#select_region").val("Nacional");
-    filter_rows();
-  </script>
+  
+    <div class="col-12 mt-5">
+      <iframe style="width: 100%; height: 100vh" id="infogram2" src="">
+      </iframe>
+    </div>
+    <script>
+      getUniqueValuesFromColumn();
+      $("#infogram2").hide();
+      $("#select_region").val("Nacional");
+      filter_rows();
+    </script>
 </body>
-
 </html>
