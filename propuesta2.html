@@ -9,6 +9,8 @@
   <!-- <link rel="stylesheet" href="./css-1.css"> -->
   <title>Fixed table</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
   const data = [
@@ -19429,7 +19431,18 @@
     },
   ];
 
-  const data2 = data;
+
+  const getDB = (urlData) =>{
+    let rawData;
+    $.get({
+        url: urlData,
+        success: data => rawData = data,        
+        async: false
+    });
+    return JSON.parse(rawData);
+  }
+  console.log(getDB("https://raw.githubusercontent.com/Sud-Austral/indicadores_asesoria/main/registro.json"))
+  const data2 = getDB("https://raw.githubusercontent.com/Sud-Austral/indicadores_asesoria/main/registro.json");
 </script>
 
 <body>
@@ -19482,25 +19495,27 @@
             ">
           <thead>
             <tr>
-            <th col-index="1" style="width: 10px !important">
+							<th col-index="1" style="width: 10px !important">
+              Indicador<br />
+            </th>
+						
+            <th col-index="2" style="width: 10px !important">
               <span>Región</span> <br />					
               
             </th>
-            <th col-index="2" style="width: 10px !important">
+            <th col-index="3" style="width: 10px !important">
               Capítulo REMA<br />
             </th>
-            <th col-index="3" style="width: 10px !important">
+            <th col-index="4" style="width: 10px !important">
               Categorías UNEP GEO<br />
             </th>
   
-            <th col-index="4" style="width: 10px !important">
+            <th col-index="5" style="width: 10px !important">
               Categorías OECD EAG<br />
             </th>
-            <th col-index="5" style="width: 10px !important">ODS<br /></th>
-            <th col-index="6" style="width: 10px !important">Fuente<br /></th>
-            <th col-index="7" style="width: 10px !important">
-              Indicador<br />
-            </th>
+            <th col-index="6" style="width: 10px !important">ODS<br /></th>
+            <th col-index="7" style="width: 10px !important">Fuente<br /></th>
+            
               </tr>
             
           </thead>
@@ -19528,12 +19543,12 @@
             </td>
   
             <td col-index="5" style="width: 10px !important; background-color: #9ec451">
-              <select class="table-filter" style="width: 2em !important" onchange="filter_rows()">
+              <select class="table-filter" style="width: 8.5em !important" onchange="filter_rows()">
                 <option value="all"></option>
               </select>
             </td>
             <td col-index="6" style="width: 10px !important; background-color: #9ec451">
-              <select class="table-filter" style="width: 8.5em !important" onchange="filter_rows()">
+              <select class="table-filter" style="width: 2em !important" onchange="filter_rows()">
                 <option value="all"></option>
               </select>
             </td>
@@ -19549,8 +19564,7 @@
   
         <!-- <script>getUniqueValuesFromColumn()
       </script> -->
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+       
         <script>
           function RenderFrame2(url) {
             $("#infogram2").show();
@@ -19573,6 +19587,9 @@
               indice++;
               var fila =
                 `<tr onclick="RenderFrame2('${elemento["Enlace visualización IFG"]}')" title="Haga click aquí para vizualisar el indicador ${elemento.Indicador}">` +
+								"<td>" +
+                elemento.Indicador +
+                "</td>" +	
                 "<td>" +
                 elemento["Región"]
                   .replace("Región de ", "")
@@ -19580,23 +19597,20 @@
                   .replace("del ", "") +
                 "</td>" +
                 "<td>" +
-                elemento["Capítulo REMA"] +
+                elemento["Capítulo"] +
                 "</td>" +
                 "<td>" +
-                elemento["Categorías UNEP GEO"] +
+                elemento["Categoría GEO (UNEP)"] +
                 "</td>" +
                 "<td>" +
-                elemento["Categorías OECD EAG"] +
+                elemento["Categoría EAG (OECD)"] +
                 "</td>" +
                 "<td>" +
                 elemento["ODS"] +
                 "</td>" +
                 "<td>" +
                 elemento["Fuente"] +
-                "</td>" +
-                "<td>" +
-                elemento.Indicador +
-                "</td>" +
+                "</td>" +                
                 "</tr>";
               tbody.append(fila);
             });
@@ -19742,7 +19756,6 @@
                 row.style.display = "none";
               }
             });
-            updateSelectOptions2()
           }
         </script>
   
